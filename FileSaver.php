@@ -37,7 +37,25 @@ class FileSaver
     }
 
     public function saveFiles(): void {
-        $this->template->saveAs($this->directoryName . DIRECTORY_SEPARATOR . $this->filename . ".docx");
+        $baseName = $this->directoryName . DIRECTORY_SEPARATOR . $this->filename;
+        $this->saveDocx($baseName);
+
+        $this->savePdf($baseName);
+    }
+
+    private function saveDocx(String $name)
+    {
+        $this->template->saveAs($name . ".docx");
+    }
+
+    private function savePdf(String $name)
+    {
+        \PhpOffice\PhpWord\Settings::setPdfRendererPath('vendor/tecnickcom/tcpdf');
+        \PhpOffice\PhpWord\Settings::setPdfRendererName('TCPDF');
+
+        $file = \PhpOffice\PhpWord\IOFactory::load($name.".docx");
+        $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($file, 'PDF');
+        $xmlWriter->save($name . ".pdf");
     }
 
     public function getDocxFile()

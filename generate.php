@@ -48,4 +48,5 @@ $fileSaver->acceptData([
 $fileSaver->saveFiles();
 
 echo '<a href="' .$fileSaver->getDocxFile() . '" class="btn btn-primary" style="margin: 20px;">Pobierz jako docx</a>';
+echo '<a href="' .$fileSaver->getPdfFile() . '" class="btn btn-primary" style="margin: 20px;">Pobierz jako PDF</a>';
 echo '<a href="index.php" class="btn btn-primary">Powrót</a>';
