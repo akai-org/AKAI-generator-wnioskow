@@ -80,40 +80,38 @@ class FileSaver
     private function fillAchievements()
     {
         $achievementNames = array_keys($this->achievements);
-        var_dump($achievementNames);
-        var_dump($this->achievements);
         $this->template->setValue('achivement1', $achievementNames[0]);
         $this->template->setValue('achivement2', $achievementNames[1]);
         $this->template->setValue('achivement3', $achievementNames[2]);
 
         if($this->achievements[$achievementNames[0]]["startDate"]!="")
         {
-            $this->template->setValue('date11', date('d/m/Y',$this->achievements[$achievementNames[0]]["startDate"]));
+            $this->template->setValue('date11', date('d/m/Y', strtotime($this->achievements[$achievementNames[0]]["startDate"])));
         }
         else $this->template->setValue('date11', "");
         if($this->achievements[$achievementNames[0]]["endDate"]!="")
         {
-            $this->template->setValue('date12', date('d/m/Y',$this->achievements[$achievementNames[0]]["endDate"]));
+            $this->template->setValue('date12', date('d/m/Y', strtotime($this->achievements[$achievementNames[0]]["endDate"])));
         }
         else $this->template->setValue('date12', "");
         if($this->achievements[$achievementNames[1]]["startDate"]!="")
         {
-            $this->template->setValue('date21', date('d/m/Y',$this->achievements[$achievementNames[1]]["startDate"]));
+            $this->template->setValue('date21', date('d/m/Y', strtotime($this->achievements[$achievementNames[1]]["startDate"])));
         }
         else $this->template->setValue('date21', "");
         if($this->achievements[$achievementNames[1]]["endDate"]!="")
         {
-            $this->template->setValue('date22', date('d/m/Y',$this->achievements[$achievementNames[1]]["endDate"]));
+            $this->template->setValue('date22', date('d/m/Y', strtotime($this->achievements[$achievementNames[1]]["endDate"])));
         }
         else $this->template->setValue('date22', "");
         if($this->achievements[$achievementNames[2]]["startDate"]!="")
         {
-            $this->template->setValue('date31', date('d/m/Y',$this->achievements[$achievementNames[2]]["startDate"]));
+            $this->template->setValue('date31', date('d/m/Y', strtotime($this->achievements[$achievementNames[2]]["startDate"])));
         }
         else $this->template->setValue('date31', "");
         if($this->achievements[$achievementNames[2]]["endDate"]!="")
         {
-            $this->template->setValue('date32', date('d/m/Y',$this->achievements[$achievementNames[2]]["endDate"]));
+            $this->template->setValue('date32', date('d/m/Y', strtotime($this->achievements[$achievementNames[2]]["endDate"])));
         }
         else $this->template->setValue('date32', "");
     }
