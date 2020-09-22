@@ -29,12 +29,13 @@
         
                 <div style="margin-left: 50px; margin-top: 200px;">
                    
-                <form action="generate.php" method="post" >
+                <form action="generate.php" method="post">
                    Imię i Nazwisko: <br><input type="text" name="name" /><br>
                    Indeks: <br><input type="number" name="indeks" /><br>
-                    
+                   Funkcja: <br><input type="text" name="function" /><br>
+                   Przewodniczący: <br><input type="text" name="leader" /><br>
                     <br><br>
-                    
+
                     Semestry członkostwa: <br>
                     
                     <input type="text" name="firstSemester" /> (np.: zimowy 2019/2020) <br>
