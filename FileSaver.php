@@ -1,6 +1,6 @@
 <?php
 
-include_once 'defines.php';
+require_once 'vendor/tecnickcom/tcpdf/tcpdf.php';
 
 class FileSaver
 {
@@ -9,17 +9,16 @@ class FileSaver
     private $semesters;
     private $achievements;
 
-    private $template;
     private $timezone;
     private $date;
     private $filename;
     private $directoryName;
     private $function;
     private $leader;
+    private $semestersPluralSingular;
 
     public function __construct(String $directory)
     {
-        $this->template = new \PhpOffice\PhpWord\TemplateProcessor('sample.docx');
         $this->timezone = date_default_timezone_get();
         $this->date = date("d/m/Y", time());
         $this->filename = date('dmYgis', time());
@@ -30,37 +29,63 @@ class FileSaver
         if (isset($array["name"])) $this->name = $array["name"];
         if (isset($array["index"])) $this->index = $array["index"];
         if (isset($array["semesters"])) $this->semesters = $array["semesters"];
+        (isset($array["semesters"][0]) && !empty($array["semesters"][0]) &&
+            isset($array["semesters"][1]) && !empty($array["semesters"][1]))?
+            $this->semestersPluralSingular = "semestrach":
+            $this->semestersPluralSingular = "semestrze";
         if (isset($array["achievements"])) $this->achievements = $array["achievements"];
         if (isset($array["function"])) $this->function = $array["function"];
         if (isset($array["leader"])) $this->leader = $array["leader"];
-        $this->fillTemplate();
     }
 
     public function saveFiles(): void {
         $baseName = $this->directoryName . DIRECTORY_SEPARATOR . $this->filename;
-        $this->saveDocx($baseName);
-
         $this->savePdf($baseName);
     }
 
-    private function saveDocx(String $name)
+    private function savePdf(string $baseName)
     {
-        $this->template->saveAs($name . ".docx");
-    }
+        $pageOrientation = 'P';
+        $measureUnit = "mm";
+        $format = "A4";
+        $marginY = 7;
+        $marginX = 12;
+        $isUnicode = true;
+        $encoding = 'UTF-8';
+        $diskCache = false;
+        $creator = "AKAI";
+        $author = $this->name;
+        $title = "Zaświadczenie";
+        $subject = "Zaświadczenie o przynależności do koła naukowego";
 
-    private function savePdf(String $name)
-    {
-        \PhpOffice\PhpWord\Settings::setPdfRendererPath('vendor/tecnickcom/tcpdf');
-        \PhpOffice\PhpWord\Settings::setPdfRendererName('TCPDF');
+        $pdf = new TCPDF($pageOrientation, $measureUnit, $format, $isUnicode, $encoding, $diskCache);
+        $pdf->SetCreator($creator);
+        $pdf->SetAuthor($author);
+        $pdf->SetTitle($title);
+        $pdf->SetSubject($subject);
+        $pdf->SetFont('dejavusans', '', 14, '', true);
 
-        $file = \PhpOffice\PhpWord\IOFactory::load($name.".docx");
-        $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($file, 'PDF');
-        $xmlWriter->save($name . ".pdf");
-    }
 
-    public function getDocxFile()
-    {
-        return $this->directoryName . DIRECTORY_SEPARATOR . $this->filename . ".docx";
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        $pdf->SetMargins($marginX, $marginY, $marginX);
+        $pdf->SetAutoPageBreak(TRUE, $marginY);
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        $pdf->setFontSubsetting(true);
+
+        $pdf->SetFont('dejavusans', '', 14, '', true);
+        $pdf->AddPage();
+        $img_file = 'assets/polibuda.jpg';
+        $pdf->setAlpha(0.1);
+        $pdf->Image($img_file, 15, 80, 180, 180, '', '', '', false, 300, '', false, false, 0);
+        $pdf->setAlpha(1);
+        $html = $this->composeHtml();
+        $pdf->writeHTML($html);
+
+
+
+        $pdf->Output($baseName.'.pdf', 'I');
     }
 
     public function getPdfFile()
@@ -68,69 +93,119 @@ class FileSaver
         return $this->directoryName . DIRECTORY_SEPARATOR . $this->filename . ".pdf";
     }
 
-    private function fillTemplate()
+    private function composeHtml()
     {
-        $this->fillBasicData();
-        $this->fillSemesters();
-        $this->fillAchievements();
+        $html = $this->crerateHeader();
+        $html .= $this->createTitle();
+        $html .= $this->createContent();
+        $html .= $this->createFooter();
+        return $html;
     }
 
-    private function fillBasicData()
+    private function crerateHeader()
     {
-        $this->template->setValue('date', $this->date);
-        $this->template->setValue('name', $this->name);
-        $this->template->setValue('indexNumber', $this->index);
-        $this->template->setValue('function', $this->function);
-        $this->template->setValue('leader', $this->leader);
+        $html = '<table>
+                     <tr>
+                         <td>
+                             <img src="assets/polibuda.jpg" width="100" height="100"/>
+                         </td>
+                         <td colspan="4" style="text-align: center;">
+                              <div style="font-size: 24px; font-weight: bold">Politechnika Poznańska</div>
+                              <div style="">Wydział Informatyki i Telekomunikacji</div>                         
+                         </td>
+                         <td></td>
+                     </tr>
+                 </table>';
+        $html .= "<hr>";
+        return $html;
     }
 
-    private function fillSemesters()
+    private function createTitle()
     {
-        $this->template->setValue('firstSemester', $this->semesters[0]);
-        $this->template->setValue('secondSemester', $this->semesters[1]);
-
-        if(isset($this->semesters[0]) && isset($this->semesters[1])) {
-            $this->template->setValue('semestrze', "semestrach");
-        }
-        else $this->template->setValue('semestrze', "semestrze");
+        $html = '<table>
+                    <tr>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; font-size: 12px;">
+                            Poznań, dnia ' . $this->date . '
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <h6>Zaświadczenie o przynależności do</h6>
+                            <span style="font-size: 18px; font-weight: bold;">Akademickiego koła aplikacji internetowych</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>';
+        return $html;
     }
 
-    private function fillAchievements()
+    private function createContent()
     {
-        $achievementNames = array_keys($this->achievements);
-        $this->template->setValue('achivement1', $achievementNames[0]);
-        $this->template->setValue('achivement2', $achievementNames[1]);
-        $this->template->setValue('achivement3', $achievementNames[2]);
+        $html = '<table>
+                    <tr>
+                        <td>
+                            Zaświadcza się, że student/ka ' . $this->name . ' (nr albumu: ' . $this->index . ') 
+                            był/a członkiem Akademickiego Koła Aplikacji Internetowych w ' . $this->semestersPluralSingular . ': ';
+                            foreach ($this->semesters as $key => $semester) {
+                                $html .= $semester;
+                                if($key != sizeof($this->semesters)-1) {
+                                    $html .= ", ";
+                                }
+                            }
+                            $html .= '
+                         </td>
+                     </tr>';
+        
+                     $html .= '
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td>Funkcja: ' . $this->function . '</td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td>Działania:</td>
+                     </tr>';
+         foreach($this->achievements as $key => $achievement) {
+             $html .= "<tr><td></td></tr>";
+             $html .= '<tr><td>' . ($key+1) . '. ' . $achievement['name'] . ' (od: ' . $achievement['startDate'] . ' do ' . $achievement['endDate'] . ') </td></tr>';
+         }
+         $html .= '</table>';
+        return $html;
+    }
 
-        if($this->achievements[$achievementNames[0]]["startDate"]!="")
-        {
-            $this->template->setValue('date11', date('d/m/Y', strtotime($this->achievements[$achievementNames[0]]["startDate"])));
-        }
-        else $this->template->setValue('date11', "");
-        if($this->achievements[$achievementNames[0]]["endDate"]!="")
-        {
-            $this->template->setValue('date12', date('d/m/Y', strtotime($this->achievements[$achievementNames[0]]["endDate"])));
-        }
-        else $this->template->setValue('date12', "");
-        if($this->achievements[$achievementNames[1]]["startDate"]!="")
-        {
-            $this->template->setValue('date21', date('d/m/Y', strtotime($this->achievements[$achievementNames[1]]["startDate"])));
-        }
-        else $this->template->setValue('date21', "");
-        if($this->achievements[$achievementNames[1]]["endDate"]!="")
-        {
-            $this->template->setValue('date22', date('d/m/Y', strtotime($this->achievements[$achievementNames[1]]["endDate"])));
-        }
-        else $this->template->setValue('date22', "");
-        if($this->achievements[$achievementNames[2]]["startDate"]!="")
-        {
-            $this->template->setValue('date31', date('d/m/Y', strtotime($this->achievements[$achievementNames[2]]["startDate"])));
-        }
-        else $this->template->setValue('date31', "");
-        if($this->achievements[$achievementNames[2]]["endDate"]!="")
-        {
-            $this->template->setValue('date32', date('d/m/Y', strtotime($this->achievements[$achievementNames[2]]["endDate"])));
-        }
-        else $this->template->setValue('date32', "");
+    private function createFooter()
+    {
+        $html = '<table><tr><td></td><td></td><td></td></tr>';
+        $html .= '<tr><td></td><td></td><td></td></tr>';
+        $html .= '<tr style="text-align: center">
+                    <td>Przewodniczący</td>
+                    <td></td>
+                    <td>Opiekun</td>
+                  </tr>';
+        $html .= '<tr><td></td><td></td><td></td></tr>';
+        $html .= '<tr style="text-align: center">
+                    <td>' . $this->leader . '</td>
+                    <td></td>
+                    <td>dr hab. inż. Mikołaj Morzy, prof. PP</td>
+                  </tr>';
+        $html .= '<tr><td></td><td></td><td></td></tr>';
+        $html .= '<tr><td style="text-align: center;">....................................</td><td></td><td style="text-align: center;">....................................</td></tr>';
+        $html .= '</table>';
+        return $html;
     }
 }

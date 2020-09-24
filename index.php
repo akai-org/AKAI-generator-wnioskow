@@ -1,3 +1,32 @@
+<?php
+error_reporting(0);
+
+require_once 'DocumentDirectoryOperator.php';
+require_once 'FileSaver.php';
+
+if($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
+    $directoryName = "outputFiles";
+    $directoryOperator = new DocumentDirectoryOperator($directoryName);
+    if(!$directoryOperator->directoryExists()) {
+        $directoryOperator->createDirectory();
+    }
+    $directoryOperator->removeOlderThan(60, DocumentDirectoryOperator::SECONDS);
+
+    $fileSaver = new FileSaver($directoryName);
+    $fileSaver->acceptData([
+        "name" => $_POST["name"],
+        "index" => $_POST["index"],
+        "function" => $_POST["function"],
+        "leader" => $_POST["leader"],
+        "semesters" => $_POST["semester"],
+        "achievements" => $_POST["achievement"]
+    ]);
+    $fileSaver->saveFiles();
+    header($fileSaver->getPdfFile());
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -26,42 +55,38 @@
     </nav>
         
         
-        
                 <div style="margin-left: 50px; margin-top: 200px;">
                    
-                <form action="generate.php" method="post">
+                <form action="index.php" method="post">
                    Imię i Nazwisko: <br><input type="text" name="name" /><br>
-                   Indeks: <br><input type="number" name="indeks" /><br>
+                   Indeks: <br><input type="number" name="index" /><br>
                    Funkcja: <br><input type="text" name="function" /><br>
                    Przewodniczący: <br><input type="text" name="leader" /><br>
                     <br><br>
 
                     Semestry członkostwa: <br>
                     
-                    <input type="text" name="firstSemester" /> (np.: zimowy 2019/2020) <br>
-                    <input type="text" name="secondSemester" /><br>
+                    <input type="text" name="semester[]" /> (np.: zimowy 2019/2020) <br>
+                    <input type="text" name="semester[]" /><br>
                     
                     <br> Działania w trakcie podanych semestrów: <br>
                     
-                    <input class = "wideField" type = text name = "achivement1"> 
-                    <input type = date name = "date11">
-                    - <input type = date name = "date12"><br>
+                    <input class = "wideField" type = text name = "achievement[0][name]">
+                    <input type = date name = "achievement[0][startDate]">
+                    - <input type = date name = "achievement[0][endDate]"><br>
                     
-                    <input class = "wideField" type = text name = "achivement2"> 
-                    <input type = date name = "date21">
-                    - <input type = date name = "date22"><br>
+                    <input class = "wideField" type = text name = "achievement[1][name]">
+                    <input type = date name = "achievement[1][startDate]">
+                    - <input type = date name = "achievement[1][endDate]"><br>
                     
-                    <input class = "wideField" type = text name = "achivement3"> 
-                    <input type = date name = "date31">
-                    - <input type = date name = "date32"><br>
+                    <input class = "wideField" type = text name = "achievement[2][name]">
+                    <input type = date name = "achievement[2][startDate]">
+                    - <input type = date name = "achievement[2][endDate]"><br>
                     <hr>                    
                     
                     <input type="submit" value = "Wygeneruj" />
                          </form></div>
 
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+         <hr>
     </body>
 </html>

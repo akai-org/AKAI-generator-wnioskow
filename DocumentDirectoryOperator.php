@@ -2,6 +2,7 @@
 
 class DocumentDirectoryOperator
 {
+    const SECONDS = 1, MINUTES = 60 , HOURS = 60*60;
     private $directoryName;
 
     public function __construct($directoryName)
@@ -19,7 +20,7 @@ class DocumentDirectoryOperator
         mkdir($this->directoryName, 0777, true);
     }
 
-    public function removeOlderThan(int $minutes): void
+    public function removeOlderThan(int $count, int $unit): void
     {
         foreach (new DirectoryIterator($this->directoryName) as $fileInfo)
         {
@@ -27,7 +28,7 @@ class DocumentDirectoryOperator
             {
                 continue;
             }
-            if ($fileInfo->isFile() && time() - $fileInfo->getCTime() >= 1*60*60/*godziny * minuty * sekundy*/) //usuwa pliki starsze niż godzina
+            if ($fileInfo->isFile() && time() - $fileInfo->getCTime() >= $count * $unit)
             {
                 unlink($fileInfo->getRealPath());
             }
