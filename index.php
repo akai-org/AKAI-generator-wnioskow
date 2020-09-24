@@ -1,18 +1,10 @@
 <?php
 error_reporting(0);
 
-require_once 'DocumentDirectoryOperator.php';
 require_once 'FileSaver.php';
 
 if($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
-    $directoryName = "outputFiles";
-    $directoryOperator = new DocumentDirectoryOperator($directoryName);
-    if(!$directoryOperator->directoryExists()) {
-        $directoryOperator->createDirectory();
-    }
-    $directoryOperator->removeOlderThan(60, DocumentDirectoryOperator::SECONDS);
-
-    $fileSaver = new FileSaver($directoryName);
+    $fileSaver = new FileSaver();
     $fileSaver->acceptData([
         "name" => $_POST["name"],
         "index" => $_POST["index"],

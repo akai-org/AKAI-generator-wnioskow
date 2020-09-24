@@ -11,39 +11,35 @@ class FileSaver
 
     private $timezone;
     private $date;
-    private $filename;
-    private $directoryName;
     private $function;
     private $leader;
     private $semestersPluralSingular;
+    private $filename;
 
-    public function __construct(String $directory)
+    public function __construct()
     {
         $this->timezone = date_default_timezone_get();
         $this->date = date("d/m/Y", time());
-        $this->filename = date('dmYgis', time());
-        $this->directoryName = $directory;
     }
 
     public function acceptData(array $array):void {
         if (isset($array["name"])) $this->name = $array["name"];
         if (isset($array["index"])) $this->index = $array["index"];
         if (isset($array["semesters"])) $this->semesters = $array["semesters"];
-        (isset($array["semesters"][0]) && !empty($array["semesters"][0]) &&
-            isset($array["semesters"][1]) && !empty($array["semesters"][1]))?
+        (!empty($array["semesters"][0]) && !empty($array["semesters"][1]))?
             $this->semestersPluralSingular = "semestrach":
             $this->semestersPluralSingular = "semestrze";
         if (isset($array["achievements"])) $this->achievements = $array["achievements"];
         if (isset($array["function"])) $this->function = $array["function"];
         if (isset($array["leader"])) $this->leader = $array["leader"];
+        $this->filename = strtolower(str_replace(' ', '_', $this->name)) . '_zaswiadczenie_' . date('Y');
     }
 
     public function saveFiles(): void {
-        $baseName = $this->directoryName . DIRECTORY_SEPARATOR . $this->filename;
-        $this->savePdf($baseName);
+        $this->savePdf();
     }
 
-    private function savePdf(string $baseName)
+    private function savePdf()
     {
         $pageOrientation = 'P';
         $measureUnit = "mm";
@@ -74,7 +70,7 @@ class FileSaver
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf->setFontSubsetting(true);
 
-        $pdf->SetFont('dejavusans', '', 14, '', true);
+        $pdf->SetFont('dejavusans', '', 10, '', true);
         $pdf->AddPage();
         $img_file = 'assets/polibuda.jpg';
         $pdf->setAlpha(0.1);
@@ -83,14 +79,12 @@ class FileSaver
         $html = $this->composeHtml();
         $pdf->writeHTML($html);
 
-
-
-        $pdf->Output($baseName.'.pdf', 'I');
+        $pdf->Output($this->filename.'.pdf', 'I');
     }
 
     public function getPdfFile()
     {
-        return $this->directoryName . DIRECTORY_SEPARATOR . $this->filename . ".pdf";
+        return $this->filename . ".pdf";
     }
 
     private function composeHtml()
@@ -139,7 +133,7 @@ class FileSaver
                     </tr>
                     <tr>
                         <td style="text-align: center;">
-                            <h6>Zaświadczenie o przynależności do</h6>
+                            <h4>Zaświadczenie o przynależności do</h4>
                             <span style="font-size: 18px; font-weight: bold;">Akademickiego koła aplikacji internetowych</span>
                         </td>
                     </tr>
@@ -159,7 +153,7 @@ class FileSaver
                             był/a członkiem Akademickiego Koła Aplikacji Internetowych w ' . $this->semestersPluralSingular . ': ';
                             foreach ($this->semesters as $key => $semester) {
                                 $html .= $semester;
-                                if($key != sizeof($this->semesters)-1) {
+                                if(!empty($this->semesters[$key+1])) {
                                     $html .= ", ";
                                 }
                             }
@@ -172,17 +166,32 @@ class FileSaver
                         <td></td>
                      </tr>
                      <tr>
-                        <td>Funkcja: ' . $this->function . '</td>
+                        <td><b>Funkcja</b>: ' . $this->function . '</td>
                      </tr>
                      <tr>
                         <td></td>
                      </tr>
                      <tr>
-                        <td>Działania:</td>
+                        <td style="font-weight: bold;">Działania:</td>
                      </tr>';
-         foreach($this->achievements as $key => $achievement) {
-             $html .= "<tr><td></td></tr>";
-             $html .= '<tr><td>' . ($key+1) . '. ' . $achievement['name'] . ' (od: ' . $achievement['startDate'] . ' do ' . $achievement['endDate'] . ') </td></tr>';
+         $printedNumber = 1;
+         foreach($this->achievements as $achievement) {
+             if(!empty($achievement["name"])) {
+                 $html .= "<tr><td></td></tr>";
+                 $html .= '<tr><td>' . $printedNumber . '. ' . $achievement["name"];
+                 if(!empty($achievement["startDate"] || !empty($achievement["endDate"]))) {
+                     $html .= " (";
+                     if(!empty($achievement["startDate"])) {
+                         $html .= "od " . $achievement["startDate"] . " ";
+                     }
+                     if(!empty($achievement["endDate"])) {
+                         $html .= "do " . $achievement["endDate"];
+                     }
+                     $html .= ")";
+                 }
+                 $html .= '</td></tr>';
+                 $printedNumber++;
+             }
          }
          $html .= '</table>';
         return $html;
