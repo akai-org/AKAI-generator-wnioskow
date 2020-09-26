@@ -23,18 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta charset="utf-8">
 
     <title>AKAI 2020</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <style>
-        .wideField {
-            width: 400px;
-        }
-    </style>
 </head>
 
 <body>
@@ -47,8 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 
     </nav>
 
-
-    <div style="margin-left: 50px; margin-top: 200px;">
+    <div>
 
         <form action="index.php" method="post">
             Imię i Nazwisko: <br><input type="text" name="name" /><br>
@@ -76,17 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
             <input type=date name="achievement[2][startDate]">
             - <input type=date name="achievement[2][endDate]"><br>
 
-            <!-- <input class = "wideField" type = text name = "achievement[0][name]">
-                    <input type = date name = "achievement[0][startDate]">
-                    - <input type = date name = "achievement[0][endDate]"><br> -->
-
-            <!-- <input class = "wideField" type = text name = "achievement[1][name]">
-                    <input type = date name = "achievement[1][startDate]">
-                    - <input type = date name = "achievement[1][endDate]"><br>
-                    
-                    <input class = "wideField" type = text name = "achievement[2][name]">
-                    <input type = date name = "achievement[2][startDate]">
-                    - <input type = date name = "achievement[2][endDate]"><br> -->
             <hr>
 
             <input type="submit" value="Wygeneruj" />
