@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="style/style.css" rel="stylesheet">
 </head>
 
 <body>
