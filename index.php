@@ -34,43 +34,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <pre class="navbar-brand">AKAI 2020 - wniosek o stypendium</pre>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+    <nav class="navbar">
+        <header class="navbar-brand">AKAI 2020 - wniosek o stypendium</header>
     </nav>
 
-    <div>
+    <div class="form-container">
 
-        <form action="index.php" method="post">
-            Imię i Nazwisko: <br><input type="text" name="name" /><br>
-            Indeks: <br><input type="number" name="index" /><br>
-            Funkcja: <br><input type="text" name="function" /><br>
-            Przewodniczący: <br><input type="text" name="leader" /><br>
-            <br><br>
+        <form class="form" action="index.php" method="post">
+            <label>Imię i Nazwisko: <br /><input type="text" name="name" /></label>
+            <label>Indeks: <br /><input type="number" name="index" /></label>
+            <label>Funkcja: <br /><input type="text" name="function" /></label>
+            <label>Przewodniczący: <br /><input type="text" name="leader" /></label>
 
-            Semestry członkostwa: <br>
+            <label>Semestry członkostwa: <br />
+                <input type="text" name="semester[]" /> (np.: zimowy 2019/2020) <br />
+                <input type="text" name="semester[]" /><br /></label>
 
-            <input type="text" name="semester[]" /> (np.: zimowy 2019/2020) <br>
-            <input type="text" name="semester[]" /><br>
+            <p>Działania w trakcie podanych semestrów: </p>
 
-            <br> Działania w trakcie podanych semestrów: <br>
-
-            <textarea class="wideField" name="achievement[0][name]" cols="30" rows="5"></textarea><br />
-            <input type=date name="achievement[0][startDate]">
-            - <input type=date name="achievement[0][endDate]"><br>
-
-            <textarea class="wideField" name="achievement[1][name]" cols="30" rows="5"></textarea><br />
-            <input type=date name="achievement[1][startDate]">
-            - <input type=date name="achievement[1][endDate]"><br>
-
-            <textarea class="wideField" name="achievement[2][name]" cols="30" rows="5"></textarea><br />
-            <input type=date name="achievement[2][startDate]">
-            - <input type=date name="achievement[2][endDate]"><br>
-
-            <hr>
+            <div class="achievement-field">
+                <textarea class="wideField" name="achievement[0][name]" cols="30" rows="5"></textarea>
+                <div class="achievement-field-dates"><input type=date name="achievement[0][startDate]">
+                    <span> - </span> <input type=date name="achievement[0][endDate]"></div>
+            </div>
 
             <input type="submit" value="Wygeneruj" />
         </form>

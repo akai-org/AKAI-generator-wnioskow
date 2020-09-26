@@ -1,0 +1,73 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  font-family: Nunito;
+}
+
+.navbar {
+  background-color: #3d3d3d;
+  padding: 20px 0;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  color: #d3d3d3;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 30px auto;
+  font-size: 1.4rem;
+  align-items: center;
+}
+
+.form input {
+  width: 350px;
+  padding: 10px 5px;
+}
+
+.form input:hover {
+  border-color: black;
+}
+
+form label {
+  margin: 10px 0;
+}
+
+.form textarea {
+  width: 350px;
+  padding: 10px 5px;
+}
+
+.achievement-field {
+  display: flex;
+}
+
+.achievement-field > .achievement-field-dates {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.achievement-field > .achievement-field-dates > input[type='date'] {
+  width: 200px;
+}
+
+.achievement-field > .achievement-field-dates > span {
+  text-align: center;
+}
+
+p {
+  align-self: flex-start;
+}
