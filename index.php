@@ -81,31 +81,35 @@ if($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 
 		<hr>
 		
-		<footer style ="margin-left: auto; margin-right: auto; height: max; background-color: #343A40; " >
-			<div class="fotterNapis" style ="display: inline-block;  color:#A0F0A0; padding: 20px; padding-left: 30px; padding-right: 30px;">
-			 Wykonane przez koło akademickie &copy AKAI 2020
-			</div>
+		<footer style ="margin-left: auto; margin-right: auto; background-color: #343A40; " >
 			
-			
-			<div class="logo" style="display: inline-block; padding: 15px; padding-right: 45px; padding-bottom: 0px; float: right;">
+				<div class="footerNapis" style ="display: inline-block;  color:#A0F0A0; padding-top: 20px; padding-bottom: 20px; padding-left:30px;">
+				 Wykonane przez koło akademickie AKAI 2020 &copy
+				</div>
 				
-				<figure>
-					<a href="https://www.put.poznan.pl/" target="_blank"><img style="width: 60px; height: 60px;" src="assets/ppLogo.png">
-					<figcaption style="text-align: center; font-size: 10px; line-height: 100%; margin: 0px; padding-top: 3px; color:#90E090; ">Politechnika</br> Poznańska</figcaption></a>
-				</figure>
 				
-			</div>
-			
-			<div class="logo" style="display: inline-block; padding: 15px; padding-right: 25px; padding-bottom: 0px; float: right;">
-				<figure>
-					<a href="https://akai.org.pl/" target="_blank"><img style="width: 60px; height: 60px;" src="assets/akaiLogo.png">
-					<figcaption style="text-align: center; margin: 0px; color:#90E090;">AKAI</figcaption></a>
-				</figure>
-			</div>		
-
-			<div class="bottomFooter" style ="margin-left: auto; margin-right: auto; height: 50px; background-color: #444A50; ">
+				<div class="logo" style="display: inline-block; padding: 15px; padding-right: 45px; padding-bottom: 0px; float: right;">
+					
+					<figure>
+						<a href="https://www.put.poznan.pl/" target="_blank" style="color:#90E090;"><img style="width: 60px; height: 60px;" src="assets/ppLogo.png">
+						<figcaption style="text-align: center; font-size: 10px; line-height: 100%; margin: 0px; padding-top: 3px; color:#90E090; ">Politechnika</br> Poznańska</figcaption></a>
+					</figure>
+					
+				</div>
 				
-			<div>
+				<div class="logo" style="display: inline-block; padding: 15px; padding-right: 25px; padding-bottom: 0px; float: right;">
+					<figure>
+						<a href="https://akai.org.pl/" target="_blank" style="color:#90E090;"><img style="width: 60px; height: 60px;" src="assets/akaiLogo.png">
+						<figcaption style="text-align: center; margin: 0px; ">AKAI</figcaption></a>
+					</figure>
+				</div>		
+				
+				<div class="bottomFooter" style ="margin-left: auto; margin-right: auto; height: 50px; background-color: #343A50; ">
+					<div class="bottomFooterText" style =" color:#90E090; opacity: 90%; font-size: 13px; padding-top: 5px; padding-bottom: 20px; padding-left:50px;">
+					Link do repozytorium projektu: <a href="https://github.com/akai-org/AKAI-generator-wnioskow?fbclid=IwAR2Df0qBYjp_-UCWiyoccz9WT28D5rhQnDXo9Xk8Kknvh0wapOvADCpoTgA" target="_blank" style =" color:#90E090;">tutaj</a>
+				
+					</div>
+				</div>
 			
 
 		<footer>
