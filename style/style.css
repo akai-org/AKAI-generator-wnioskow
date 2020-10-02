@@ -6,10 +6,6 @@ body {
 }
 
 body {
-  background-image: url('./../assets/polibuda.jpg');
-  background-position: -10% 130%;
-  background-repeat: no-repeat;
-  background-size: 600px 600px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -39,7 +35,7 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  margin: 30px auto;
+  margin: 0 auto;
   font-size: 1.4rem;
   align-items: center;
 }
@@ -51,7 +47,16 @@ div {
 
 .form-container {
   width: 100vw;
-  padding: 30px 0;
+  padding: 60px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.form input,
+textarea {
+  background-color: transparent;
 }
 
 .form input {
@@ -151,11 +156,17 @@ input[type='submit'] {
   margin-left: 10px;
 }
 
-@media screen and (max-width: 1024px) {
-  body {
-    background: none;
-  }
+.logo {
+  position: absolute;
+  width: 700px;
+  opacity: 0.05;
+  display: block;
+  align-self: center;
+  bottom: -300px;
+  z-index: -1;
+}
 
+@media screen and (max-width: 1024px) {
   .navbar > header {
     font-size: 3rem;
   }
@@ -181,13 +192,11 @@ input[type='submit'] {
 
   .form input,
   textarea {
-    /* padding: 20px 10px; */
     font-size: 2rem;
   }
 
   .achievement-field {
     width: 100%;
-    /* margin: 0 auto; */
   }
 
   .achievement-field-dates {
@@ -206,5 +215,9 @@ input[type='submit'] {
   .footer {
     height: 150px;
     font-size: 2rem;
+  }
+
+  .logo {
+    display: none;
   }
 }
