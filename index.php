@@ -64,6 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 
             <input type="submit" value="Wygeneruj" />
         </form>
+
+        <img class="logo" src="/assets/polibuda.jpg" alt="logo politechniki">
     </div>
 
     <footer class="footer">Created by <a href="https://akai.org.pl" target="blank"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="189.211px" height="211.778px" viewBox="0 0 189.211 211.778" enable-background="new 0 0 189.211 211.778" xml:space="preserve">
