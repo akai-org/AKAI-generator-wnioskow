@@ -135,6 +135,14 @@ p {
 input[type='submit'] {
   margin-top: 50px;
   width: 450px;
+  background-color: white;
+  cursor: pointer;
+  transition: all ease-in 100ms;
+}
+
+input[type='submit']:hover {
+  background-color: transparent;
+  transform: translateY(-10px);
 }
 
 .footer {
@@ -159,11 +167,35 @@ input[type='submit'] {
 .logo {
   position: absolute;
   width: 700px;
-  opacity: 0.05;
+  opacity: 0.2;
   display: block;
   align-self: center;
   bottom: -300px;
   z-index: -1;
+}
+
+.loading-info {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  margin-top: 60px;
+  display: none;
+}
+
+.loading-info > svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  animation: rotate 3s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -219,5 +251,16 @@ input[type='submit'] {
 
   .logo {
     display: none;
+  }
+
+  .loading-info {
+    width: fit-content;
+    margin: 30px auto;
+    font-size: 2rem;
+  }
+
+  .loading-info > svg {
+    width: 50px;
+    height: 50px;
   }
 }
