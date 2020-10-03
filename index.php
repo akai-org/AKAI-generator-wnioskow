@@ -66,81 +66,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
         </form>
     </div>
 
-    <footer style ="margin: auto; background-color: #343A40;display: flex" >
+    <footer>
 			
-				<div class="footerNapis" style ="display: inline-block;  color:#C0F0C0; margin: auto auto auto 20px;">
+				<div class="footerNapis" >
 					 Wykonane przez koło akademickie AKAI 2020 &copy
 				</div>
 			
 				<div class="logos" style="margin-left: auto">
 					
-					<div class="logoPP" style="display: inline-block; padding: 15px; padding-right: 45px; padding-bottom: 10px; float: right;">
-						<figure>
+					<div class="logo" style="padding-right: 45px;">
 							<a href="https://www.put.poznan.pl/" target="_blank" style="color:#C0F0C0;"><img style="height: 60px;" src="assets/ppLogo.png"></a>
-						</figure>
 
 					</div>
 					
-					<div class="logoGIT" style="display: inline-block; padding: 15px; padding-right: 21px; padding-bottom: 0px; float: right;">
-						<figure>
-							<a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="assets/githubLogo.png">
-							<figcaption style="text-align: center; font-size: 10px; line-height: 100%; margin: 0px; padding-top: 3px; color:#C0F0C0; ">Repozytorium</br>projektu</figcaption></a>
-						</figure>
+					<div class="logo" >
+							<a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="assets/githubLogo.png"></a>
+					
 					</div>
 					
-					<div class="logoAKAI" style="display: inline-block; padding: 15px; padding-right: 21px; padding-bottom: 0px; float: right;">
-						<figure>
-							<a href="https://akai.org.pl/" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="assets/akaiLogo.png">
-							<figcaption style="text-align: center; margin: 0px; ">AKAI</figcaption></a>
-						</figure>
+					<div class="logo" >
+							<a href="https://akai.org.pl/" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="assets/akaiLogo.png"></a>
+
 					</div>	
 				
-
-									
+				
 				</div>
 
-		</footer>
+	</footer>
 
     <script src="index.js"></script>
 </body>
 
         
-        
-                <div style="margin-left: 50px; margin-top: 200px;">
-                   
-                <form action="index.php" method="post">
-                   Imię i Nazwisko: <br><input type="text" name="name" /><br>
-                   Indeks: <br><input type="number" name="index" /><br>
-                   Funkcja: <br><input type="text" name="function" /><br>
-                   Przewodniczący: <br><input type="text" name="leader" /><br>
-                    <br><br>
-
-                    Semestry członkostwa: <br>
-                    
-                    <input type="text" name="semester[]" /> (np.: zimowy 2019/2020) <br>
-                    <input type="text" name="semester[]" /><br>
-                    
-                    <br> Działania w trakcie podanych semestrów: <br>
-                    
-                    <input class = "wideField" type = text name = "achievement[0][name]">
-                    <input type = date name = "achievement[0][startDate]">
-                    - <input type = date name = "achievement[0][endDate]"><br>
-                    
-                    <input class = "wideField" type = text name = "achievement[1][name]">
-                    <input type = date name = "achievement[1][startDate]">
-                    - <input type = date name = "achievement[1][endDate]"><br>
-                    
-                    <input class = "wideField" type = text name = "achievement[2][name]">
-                    <input type = date name = "achievement[2][startDate]">
-                    - <input type = date name = "achievement[2][endDate]"><br>
-                    <hr>                    
-                    
-                    <input type="submit" value = "Wygeneruj" />
-                         </form></div>
-
-		<hr>
-		
-		
-		
-    </body>
 </html>
