@@ -7,9 +7,11 @@ body {
 
 body {
   background-image: url('./../assets/polibuda.jpg');
-  background-position: -10% 130%;
+  background-color: rgba(255,255,255,0.7);
+  background-blend-mode: lighten;
+  background-position: -10%  130%;
   background-repeat: no-repeat;
-  background-size: 600px 600px;
+  background-size: 900px 900px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
