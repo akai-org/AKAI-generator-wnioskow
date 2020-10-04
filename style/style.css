@@ -138,16 +138,6 @@ input[type='submit'] {
   font-size: 0.8rem;
 }
 
-.share_help {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  padding-left: 0.3rem;
-  cursor: pointer;
-}
-
 @media screen and (max-width: 1024px) {
   body {
     background: none;
