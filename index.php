@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 <head>
     <meta charset="utf-8">
 
-    <title>AKAI 2020</title>
+    <title>AKAI Generator zaświadczeń</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 <body>
 
     <nav class="navbar">
-        <header class="navbar-brand">AKAI 2020 - wniosek o stypendium</header>
+        <header class="navbar-brand">Generator zaświadczeń o członkostwie</header>
     </nav>
 
     <div class="form-container">
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
     <footer>
 			
 				<div class="footerNapis" >
-					 Wykonane przez koło akademickie AKAI 2020 &copy
+					 Wykonane przez AKAI 2020 &copy
 				</div>
 			
 				<div class="logos" style="margin-left: auto">
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
 					
 					<div class="logo" >
 							<a href="https://github.com/akai-org/AKAI-generator-wnioskow" target="_blank" style="color:#C0F0C0;"><img style="width: 60px; height: 60px;" src="assets/githubLogo.png"></a>
-					
+
 					</div>
 					
 					<div class="logo" >
