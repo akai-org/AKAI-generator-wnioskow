@@ -111,7 +111,7 @@ class FileSaver
                          </td>
                          <td colspan="4" style="text-align: center;">
                               <div style="font-size: 24px; font-weight: bold">Politechnika Poznańska</div>
-                              <div style="">Wydział Informatyki i Telekomunikacji</div>                         
+                              <div style="">' . $this->department .  '</div>                         
                          </td>
                          <td></td>
                      </tr>
@@ -156,7 +156,7 @@ class FileSaver
                     <tr>
                         <td>
                             Zaświadcza się, że student/ka ' . $this->name . ' (nr albumu: ' . $this->index . ') 
-                            był/a członkiem ' . $this->club_name . ' ' . $this->department . ' w ' . $this->semestersPluralSingular . ': ';
+                            był/a członkiem ' . $this->club_name . ' w ' . $this->semestersPluralSingular . ': ';
                             foreach ($this->semesters as $key => $semester) {
                                 $html .= $semester;
                                 if(!empty($this->semesters[$key+1])) {

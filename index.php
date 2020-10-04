@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
             <label>Indeks: <br /><input type="number" name="index" /></label>
             <label>Funkcja: <br /><input type="text" name="function" /></label>
             <label>Przewodniczący: <br /><input type="text" name="leader" /></label>
-            <label>Nazwa Koła: <br /><input type="text" name="club_name" placeholder="np.: Akademickiego koła aplikacji internetowych"/></label>
-            <label>Nazwa Wydziału: <br /><input type="text" name="department" placeholder="np.: Wydziału Informatyki i Telekomunikacji"/></label>
+            <label>Nazwa Koła (w dopełniaczu): <br /><input type="text" name="club_name" placeholder="np.: Akademickiego koła aplikacji internetowych"/></label>
+            <label>Nazwa Wydziału: <br /><input type="text" name="department" placeholder="np.: Wydział Informatyki i Telekomunikacji"/></label>
             <label>Opiekun Koła: <br /><input type="text" name="patron"/></label>
             <label class="semesters">Semestry członkostwa: <br />
                 <input type="text" name="semester[]" placeholder="np.: zimowy 2019/2020" /><br />
