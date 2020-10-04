@@ -14,4 +14,9 @@ window.addEventListener('load', () => {
 
     achievementContainer.appendChild(newChildElement);
   });
+
+  document.querySelector('input[type="submit"]').addEventListener('click', (e) => {
+    document.querySelector('.loading-info').style.display = 'flex';
+    e.target.style.display = 'none';
+  });
 });
