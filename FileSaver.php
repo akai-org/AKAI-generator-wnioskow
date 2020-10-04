@@ -8,6 +8,9 @@ class FileSaver
     private $index;
     private $semesters;
     private $achievements;
+    private $club_name;
+    private $department;
+    private $patron;
 
     private $timezone;
     private $date;
@@ -32,6 +35,9 @@ class FileSaver
         if (isset($array["achievements"])) $this->achievements = $array["achievements"];
         if (isset($array["function"])) $this->function = $array["function"];
         if (isset($array["leader"])) $this->leader = $array["leader"];
+        if (isset($array["club_name"])) $this->club_name = $array["club_name"];
+        if (isset($array["department"])) $this->department = $array["department"];
+        if (isset($array["patron"])) $this->patron = $array["patron"];
         $this->filename = strtolower(str_replace(' ', '_', $this->name)) . '_zaswiadczenie_' . date('Y');
     }
 
@@ -105,7 +111,7 @@ class FileSaver
                          </td>
                          <td colspan="4" style="text-align: center;">
                               <div style="font-size: 24px; font-weight: bold">Politechnika Poznańska</div>
-                              <div style="">Wydział Informatyki i Telekomunikacji</div>                         
+                              <div style="">' . $this->department .  '</div>                         
                          </td>
                          <td></td>
                      </tr>
@@ -134,7 +140,7 @@ class FileSaver
                     <tr>
                         <td style="text-align: center;">
                             <h4>Zaświadczenie o przynależności do</h4>
-                            <span style="font-size: 18px; font-weight: bold;">Akademickiego koła aplikacji internetowych</span>
+                            <span style="font-size: 18px; font-weight: bold;">' .$this->club_name . '</span>
                         </td>
                     </tr>
                     <tr>
@@ -150,7 +156,7 @@ class FileSaver
                     <tr>
                         <td>
                             Zaświadcza się, że student/ka ' . $this->name . ' (nr albumu: ' . $this->index . ') 
-                            był/a członkiem Akademickiego Koła Aplikacji Internetowych w ' . $this->semestersPluralSingular . ': ';
+                            był/a członkiem ' . $this->club_name . ' w ' . $this->semestersPluralSingular . ': ';
                             foreach ($this->semesters as $key => $semester) {
                                 $html .= $semester;
                                 if(!empty($this->semesters[$key+1])) {
@@ -210,7 +216,7 @@ class FileSaver
         $html .= '<tr style="text-align: center">
                     <td>' . $this->leader . '</td>
                     <td></td>
-                    <td>dr hab. inż. Mikołaj Morzy, prof. PP</td>
+                    <td>' . $this->patron . '</td>
                   </tr>';
         $html .= '<tr><td></td><td></td><td></td></tr>';
         $html .= '<tr><td style="text-align: center;">....................................</td><td></td><td style="text-align: center;">....................................</td></tr>';

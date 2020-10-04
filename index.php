@@ -11,7 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
         "function" => $_POST["function"],
         "leader" => $_POST["leader"],
         "semesters" => $_POST["semester"],
-        "achievements" => $_POST["achievement"]
+        "achievements" => $_POST["achievement"],
+        "department" => $_POST["department"],
+        "club_name" => $_POST["club_name"],
+        "patron" => $_POST["patron"],
     ]);
     $fileSaver->saveFiles();
     header($fileSaver->getPdfFile());
@@ -45,7 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
             <label>Indeks: <br /><input type="number" name="index" /></label>
             <label>Funkcja: <br /><input type="text" name="function" /></label>
             <label>Przewodniczący: <br /><input type="text" name="leader" /></label>
-
+            <label>Nazwa Koła (w dopełniaczu): <br /><input type="text" name="club_name" placeholder="np.: Akademickiego koła aplikacji internetowych"/></label>
+            <label>Nazwa Wydziału: <br /><input type="text" name="department" placeholder="np.: Wydział Informatyki i Telekomunikacji"/></label>
+            <label>Opiekun Koła: <br /><input type="text" name="patron"/></label>
             <label class="semesters">Semestry członkostwa: <br />
                 <input type="text" name="semester[]" placeholder="np.: zimowy 2019/2020" /><br />
                 <input type="text" name="semester[]" /><br /></label>
