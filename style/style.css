@@ -7,9 +7,9 @@ body {
 
 body {
   background-image: url('./../assets/polibuda.jpg');
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   background-blend-mode: lighten;
-  background-position: -10%  130%;
+  background-position: -10% 130%;
   background-repeat: no-repeat;
   background-size: 900px 900px;
   min-height: 100vh;
@@ -90,6 +90,10 @@ div {
   }
 }
 
+.achievement-container {
+  width: 450px;
+}
+
 .achievement-field > .achievement-field-dates {
   display: flex;
   justify-content: space-between;
@@ -132,6 +136,38 @@ p {
 input[type='submit'] {
   margin-top: 50px;
   width: 450px;
+  background-color: white;
+  cursor: pointer;
+  transition: all ease-in 100ms;
+}
+
+input[type='submit']:hover {
+  background-color: transparent;
+  transform: translateY(-10px);
+}
+
+.loading-info {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  margin-top: 60px;
+  display: none;
+}
+
+.loading-info > svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  animation: rotate 3s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }
 
 .share_link {
@@ -185,38 +221,39 @@ input[type='submit'] {
     width: 300px !important;
   }
 
+  .loading-info {
+    width: fit-content;
+    margin: 30px auto;
+    font-size: 2rem;
+  }
+
+  .loading-info > svg {
+    width: 50px;
+    height: 50px;
+  }
 }
 
-
-
-.footer > label, div 
-{
+.footer > label,
+div {
   width: auto;
 }
 
-footer
-{
-	margin: 0; 
-	background-color: #343A40;
-	display: flex;
+footer {
+  margin: 0;
+  background-color: #343a40;
+  display: flex;
 }
 
-.footerNapis
-{
-	display: inline-block;  
-	color:#C0F0C0; 
-	margin: auto auto auto 20px;
+.footerNapis {
+  display: inline-block;
+  color: #c0f0c0;
+  margin: auto auto auto 20px;
 }
 
-.logo
-{
-	display: inline-block; 
-	padding: 15px; 
-	padding-right: 21px;
-	padding-bottom: 10px; 
-	float: right;
+.logo {
+  display: inline-block;
+  padding: 15px;
+  padding-right: 21px;
+  padding-bottom: 10px;
+  float: right;
 }
-
-
-
-
