@@ -170,6 +170,10 @@ input[type='submit']:hover {
   }
 }
 
+.share_link {
+  font-size: 0.8rem;
+}
+
 @media screen and (max-width: 1024px) {
   body {
     background: none;
