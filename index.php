@@ -60,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
             <div class="achievement-container">
                 <div class="achievement-field">
                     <textarea class="wideField" name="achievement[0][name]" cols="30" rows="5"></textarea>
-                    <div class="achievement-field-dates"><input type=date name="achievement[0][startDate]">
-                        <span> - </span> <input type=date name="achievement[0][endDate]"></div>
+                    <div class="achievement-field-dates"><input type=date class="startDate" name="achievement[0][startDate]">
+                        <span> - </span> <input type=date class="endDate" name="achievement[0][endDate]"></div>
                 </div>
             </div>
 
