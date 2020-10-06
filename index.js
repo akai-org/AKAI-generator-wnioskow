@@ -4,14 +4,33 @@ window.addEventListener('load', () => {
     const achievementFieldsCount = achievementContainer.querySelectorAll('.achievement-field').length;
     const newChildElement = achievementContainer.children[achievementFieldsCount - 1].cloneNode(true);
 
-    console.log(newChildElement.querySelector('textarea[name*="name"]').name);
+    if (newChildElement.querySelector('.removable')) {
+      newChildElement.querySelector('.removable').remove();
+    }
 
-    newChildElement.querySelector('textarea[name*="name"]').name = `achievement[${achievementFieldsCount}][name]`;
-    newChildElement.querySelector(
-      'input[name*="startDate"]'
-    ).name = `achievement[${achievementFieldsCount}][startDate]`;
-    newChildElement.querySelector('input[name*="endDate"]').name = `achievement[${achievementFieldsCount}][endDate]`;
+    const textareaField = newChildElement.querySelector('textarea[name*="name"]');
+    textareaField.name = `achievement[${achievementFieldsCount}][name]`;
+    textareaField.value = '';
 
+    const startDateField = newChildElement.querySelector('input[name*="startDate"]');
+    startDateField.name = `achievement[${achievementFieldsCount}][startDate]`;
+    startDateField.value = '';
+
+    const endDatefield = newChildElement.querySelector('input[name*="endDate"]');
+    endDatefield.name = `achievement[${achievementFieldsCount}][endDate]`;
+    endDatefield.value = '';
+
+    const deleteButton = document.createElement('span');
+    deleteButton.textContent = 'x';
+    deleteButton.classList.add('removable');
+    deleteButton.title = 'Usuń osiągnięcie';
+
+    deleteButton.addEventListener('click', (e) => {
+      const node = e.target.parentNode;
+      node.remove();
+    });
+
+    newChildElement.appendChild(deleteButton);
     achievementContainer.appendChild(newChildElement);
   });
 
