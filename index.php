@@ -61,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
             <div class="share_link">
                 <a href="#" id="link" title="Skopiuj link z polami przewodniczący, nazwa koła, nazwa wydziału i opiekun koła uzupełnionymi w ten sam sposób.">Skopiuj link do formularza</a>
             </div>
-            <label class="semesters">Semestry członkostwa (conajmniej jeden): <br />
+            <label class="semesters">Semestry członkostwa (co najmniej jeden): <br />
                 <input type="text" name="semester[]" placeholder="np.: zimowy 2019" /><br />
                 <input type="text" name="semester[]" placeholder="np.: letni 2020" /><br /></label>
 
