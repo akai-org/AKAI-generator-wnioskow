@@ -20,6 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
     header($fileSaver->getPdfFile());
     die();
 }
+
+if($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
+    $leader = $_GET["leader"] ?? "";
+    $clubname = $_GET["clubname"] ?? "";
+    $department = $_GET["department"] ?? "";
+    $patron = $_GET["patron"] ?? "";
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,13 +54,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
             <label>Imię i Nazwisko: <br /><input type="text" name="name" /></label>
             <label>Indeks: <br /><input type="number" name="index" /></label>
             <label>Funkcja: <br /><input type="text" name="function" /></label>
-            <label>Przewodniczący: <br /><input type="text" name="leader" /></label>
-            <label>Nazwa Koła (w dopełniaczu): <br /><input type="text" name="club_name" placeholder="np.: Akademickiego koła aplikacji internetowych"/></label>
-            <label>Nazwa Wydziału: <br /><input type="text" name="department" placeholder="np.: Wydział Informatyki i Telekomunikacji"/></label>
-            <label>Opiekun Koła: <br /><input type="text" name="patron"/></label>
-            <label class="semesters">Semestry członkostwa: <br />
-                <input type="text" name="semester[]" placeholder="np.: zimowy 2019/2020" /><br />
-                <input type="text" name="semester[]" /><br /></label>
+            <label>Przewodniczący: <br /><input type="text" name="leader" id="leader" value="<?= $leader ?>"/></label>
+            <label>Nazwa Koła (w dopełniaczu): <br /><input type="text" name="club_name" id="clubname" value="<?= $clubname ?>" placeholder="np.: Akademickiego koła aplikacji internetowych"/></label>
+            <label>Nazwa Wydziału: <br /><input type="text" name="department" id="department" value="<?= $department ?>" placeholder="np.: Wydział Informatyki i Telekomunikacji"/></label>
+            <label>Opiekun Koła: <br /><input type="text" id="patron" value="<?= $patron ?>" name="patron"/></label>
+            <div class="share_link">
+                <a href="#" id="link" title="Skopiuj link z polami przewodniczący, nazwa koła, nazwa wydziału i opiekun koła uzupełnionymi w ten sam sposób.">Skopiuj link do formularza</a>
+            </div>
+            <label class="semesters">Semestry członkostwa (co najmniej jeden): <br />
+                <input type="text" name="semester[]" placeholder="np.: zimowy 2019" /><br />
+                <input type="text" name="semester[]" placeholder="np.: letni 2020" /><br /></label>
 
             <p>Działania w trakcie podanych semestrów: </p>
 

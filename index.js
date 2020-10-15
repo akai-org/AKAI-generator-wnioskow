@@ -127,6 +127,19 @@ window.addEventListener('load', () => {
     copyTextToClipboard(link);
   });
 
+  document.querySelector('#link').addEventListener('click', () => {
+    const query = {
+      leader: document.querySelector('#leader').value,
+      clubname: document.querySelector('#clubname').value,
+      department: document.querySelector('#department').value,
+      patron: document.querySelector('#patron').value,
+    };
+
+    const queryString = getQuerStringFromObject(query);
+    const link = generateLinkWithParamsString(queryString);
+    copyTextToClipboard(link);
+  });
+
   document.querySelector('input[type="submit"]').addEventListener('click', (e) => {
     document.querySelector('.loading-info').style.display = 'flex';
     e.target.style.display = 'none';
@@ -140,44 +153,6 @@ window.addEventListener('load', () => {
 
   // document.querySelector('form').addEventListener('submit',
 });
-
-const dispatchCookies = () => {
-  const inputs = document.querySelector('form').querySelectorAll('label input');
-
-  let counter = 1;
-
-  inputs.forEach((input) => {
-    if (input.value !== '') {
-      if (input.name === 'semester[]') {
-        document.cookie = `${input.name}${counter}=${input.value}`;
-        counter++;
-      } else document.cookie = `${input.name}=${input.value}`;
-    }
-  });
-
-  sendAchievementCookie();
-};
-
-const sendAchievementCookie = () => {
-  const achievementElements = document.querySelector('form').querySelectorAll('.achievement-field');
-  let achievements = [];
-
-  achievementElements.forEach((achievement) => {
-    const value = achievement.querySelector('.wideField').value;
-    const startDate = achievement.querySelector('.startDate').value;
-    const endDate = achievement.querySelector('.endDate').value;
-
-    let achie = {
-      value,
-      startDate,
-      endDate,
-    };
-
-    achievements.push(achie);
-  });
-
-  document.cookie = 'achievements=' + JSON.stringify(achievements);
-};
 
 function getQuerStringFromObject(object) {
   return Object.entries(object)
