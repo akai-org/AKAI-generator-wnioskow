@@ -105,6 +105,13 @@ window.addEventListener('load', () => {
 
     newChildElement.appendChild(deleteButton);
     achievementContainer.appendChild(newChildElement);
+
+    const inputHandlers = document.querySelectorAll('input');
+    const textareaHandlers = document.querySelectorAll('textarea');
+    const handlers = [...inputHandlers, ...textareaHandlers];
+
+    handlers.forEach((handler) => handler.removeEventListener('keydown', () => dispatchCookies()));
+    handlers.forEach((handler) => handler.addEventListener('keydown', () => dispatchCookies()));
   });
 
   document.querySelector('#link').addEventListener('click', () => {
@@ -125,23 +132,31 @@ window.addEventListener('load', () => {
     e.target.style.display = 'none';
   });
 
-  document.querySelector('form').addEventListener('submit', (e) => {
-    const inputs = e.target.querySelectorAll('label input');
+  const inputHandlers = document.querySelectorAll('input');
+  const textareaHandlers = document.querySelectorAll('textarea');
+  const handlers = [...inputHandlers, ...textareaHandlers];
 
-    let counter = 1;
+  handlers.forEach((handler) => handler.addEventListener('keydown', () => dispatchCookies()));
 
-    inputs.forEach((input) => {
-      if (input.value !== '') {
-        if (input.name === 'semester[]') {
-          document.cookie = `${input.name}${counter}=${input.value}`;
-          counter++;
-        } else document.cookie = `${input.name}=${input.value}`;
-      }
-    });
-
-    sendAchievementCookie();
-  });
+  // document.querySelector('form').addEventListener('submit',
 });
+
+const dispatchCookies = () => {
+  const inputs = document.querySelector('form').querySelectorAll('label input');
+
+  let counter = 1;
+
+  inputs.forEach((input) => {
+    if (input.value !== '') {
+      if (input.name === 'semester[]') {
+        document.cookie = `${input.name}${counter}=${input.value}`;
+        counter++;
+      } else document.cookie = `${input.name}=${input.value}`;
+    }
+  });
+
+  sendAchievementCookie();
+};
 
 const sendAchievementCookie = () => {
   const achievementElements = document.querySelector('form').querySelectorAll('.achievement-field');
