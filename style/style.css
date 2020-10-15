@@ -139,7 +139,6 @@ input[type='submit'] {
   width: 450px;
   background-color: white;
   cursor: pointer;
-  transition: all ease-in 100ms;
 }
 
 .loading-info {
