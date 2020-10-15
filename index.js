@@ -110,8 +110,8 @@ window.addEventListener('load', () => {
     const textareaHandlers = document.querySelectorAll('textarea');
     const handlers = [...inputHandlers, ...textareaHandlers];
 
-    handlers.forEach((handler) => handler.removeEventListener('keydown', () => dispatchCookies()));
-    handlers.forEach((handler) => handler.addEventListener('keydown', () => dispatchCookies()));
+    handlers.forEach((handler) => handler.removeEventListener('keyup', () => dispatchCookies()));
+    handlers.forEach((handler) => handler.addEventListener('keyup', () => dispatchCookies()));
   });
 
   document.querySelector('#link').addEventListener('click', () => {
@@ -136,7 +136,7 @@ window.addEventListener('load', () => {
   const textareaHandlers = document.querySelectorAll('textarea');
   const handlers = [...inputHandlers, ...textareaHandlers];
 
-  handlers.forEach((handler) => handler.addEventListener('keydown', () => dispatchCookies()));
+  handlers.forEach((handler) => handler.addEventListener('keyup', () => dispatchCookies()));
 
   // document.querySelector('form').addEventListener('submit',
 });
