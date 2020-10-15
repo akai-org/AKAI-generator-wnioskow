@@ -142,11 +142,6 @@ input[type='submit'] {
   transition: all ease-in 100ms;
 }
 
-input[type='submit']:hover {
-  background-color: transparent;
-  transform: translateY(-10px);
-}
-
 .loading-info {
   font-size: 15px;
   display: flex;
