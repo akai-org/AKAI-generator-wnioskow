@@ -77,6 +77,7 @@ div {
   flex-direction: column;
   animation: appear 300ms ease-in-out;
   margin-top: 10px;
+  position: relative;
 }
 
 @keyframes appear {
@@ -138,12 +139,6 @@ input[type='submit'] {
   width: 450px;
   background-color: white;
   cursor: pointer;
-  transition: all ease-in 100ms;
-}
-
-input[type='submit']:hover {
-  background-color: transparent;
-  transform: translateY(-10px);
 }
 
 .loading-info {
@@ -242,18 +237,36 @@ footer {
   margin: 0;
   background-color: #343a40;
   display: flex;
+  padding: 15px 0;
 }
 
 .footerNapis {
-  display: inline-block;
-  color: #c0f0c0;
-  margin: auto auto auto 20px;
+  color: #d3d3d3;
+  padding-left: 50px;
+  padding-bottom: 15px;
+  vertical-align: bottom;
+  display: flex;
+  align-items: flex-end;
 }
 
 .logo {
-  display: inline-block;
-  padding: 15px;
-  padding-right: 21px;
-  padding-bottom: 10px;
-  float: right;
+  padding: 15px 21px 15px 10px;
+}
+
+.removable {
+  position: absolute;
+  right: -20px;
+  top: -12px;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 100ms ease-in;
+}
+
+.removable:hover {
+  transform: translateY(-5px);
+}
+
+footer > .logos {
+  display: flex;
+  flex-direction: row-reverse;
 }
