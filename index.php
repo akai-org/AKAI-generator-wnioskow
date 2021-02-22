@@ -51,17 +51,22 @@ if($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
     <div class="form-container">
 
         <form class="form" action="index.php" method="post">
-            <label>Imię i Nazwisko: <br /><input type="text" name="name" /></label>
-            <label>Indeks: <br /><input type="number" name="index" /></label>
-            <label>Funkcja: <br /><input type="text" name="function" /></label>
+
+            <h3>Dane koła</h3>
             <label>Przewodniczący: <br /><input type="text" name="leader" id="leader" value="<?= $leader ?>"/></label>
             <label>Nazwa Koła (w dopełniaczu): <br /><input type="text" name="club_name" id="clubname" value="<?= $clubname ?>" placeholder="np.: Akademickiego koła aplikacji internetowych"/></label>
             <label>Nazwa Wydziału: <br /><input type="text" name="department" id="department" value="<?= $department ?>" placeholder="np.: Wydział Informatyki i Telekomunikacji"/></label>
             <label>Opiekun Koła: <br /><input type="text" id="patron" value="<?= $patron ?>" name="patron"/></label>
             <div class="share_link">
-                <a href="#" id="link" title="Skopiuj link z polami przewodniczący, nazwa koła, nazwa wydziału i opiekun koła uzupełnionymi w ten sam sposób.">Skopiuj link do formularza</a>
+                <a href="#" id="link" title="Skopiuj link z polami przewodniczący, nazwa koła, nazwa wydziału i opiekun koła uzupełnionymi w ten sam sposób.">Skopiuj link do formularza z uzupełnionymim danymi koła</a>
             </div>
-            <label class="semesters">Semestry członkostwa (co najmniej jeden): <br />
+
+            <h3>Dane indywidualne</h3>
+            <label>Imię i Nazwisko: <br /><input type="text" name="name" /></label>
+            <label>Indeks: <br /><input type="number" name="index" /></label>
+            <label>Funkcja: <br /><input type="text" name="function" /></label>
+
+            <label class="semesters">Semestry członkostwa (conajmniej jeden): <br />
                 <input type="text" name="semester[]" placeholder="np.: zimowy 2019" /><br />
                 <input type="text" name="semester[]" placeholder="np.: letni 2020" /><br /></label>
 
@@ -70,15 +75,15 @@ if($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
             <div class="achievement-container">
                 <div class="achievement-field">
                     <textarea class="wideField" name="achievement[0][name]" cols="30" rows="5"></textarea>
-                    <div class="achievement-field-dates"><input type=date class="startDate" name="achievement[0][startDate]">
-                        <span> - </span> <input type=date class="endDate" name="achievement[0][endDate]"></div>
+                    <div class="achievement-field-dates"><input type=date name="achievement[0][startDate]">
+                        <span> - </span> <input type=date name="achievement[0][endDate]"></div>
                 </div>
             </div>
 
             <span class="add-achievement-button">Dodaj osiągnięcie</span>
 
             <input type="submit" value="Wygeneruj" />
-            
+
             <span class="loading-info">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="189.211px" height="211.778px" viewBox="0 0 189.211 211.778" enable-background="new 0 0 189.211 211.778" xml:space="preserve">
                     <g>
