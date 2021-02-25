@@ -270,3 +270,16 @@ footer > .logos {
   display: flex;
   flex-direction: row-reverse;
 }
+
+.achievement-remove-button {
+  position: absolute;
+  top: 0;
+  left: calc(100%);
+  background: transparent;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: 2rem;
+  transform: translateY(-1rem);
+  cursor: pointer;
+}
