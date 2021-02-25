@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
             <label>Indeks: <br /><input type="number" name="index" class="form-data" data-name="index"/></label>
             <label>Funkcja: <br /><input type="text" name="function" class="form-data" data-name="function"/></label>
 
-            <label class="semesters">Semestry członkostwa (conajmniej jeden): <br />
+            <label class="semesters">Semestry członkostwa (co najmniej jeden): <br />
                 <input type="text" name="semester[]" placeholder="np.: zimowy 2019"  class="form-data" data-name="end-date"/><br />
                 <input type="text" name="semester[]" placeholder="np.: letni 2020"  class="form-data" data-name="start-date"/><br /></label>
 
