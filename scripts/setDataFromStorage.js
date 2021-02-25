@@ -15,8 +15,6 @@ export const setDataFromStorage = () => {
   if (localStorage.achievements) {
     const achievements = JSON.parse(localStorage.achievements);
 
-    console.log(achievements);
-
     for (let i = 0; i < achievements.length - 1; i += 1) {
       addAchievement();
     }
@@ -25,7 +23,6 @@ export const setDataFromStorage = () => {
     achievementsFields.forEach((field) => {
       const achievementFieldFromStorage = achievements.find((record) => record.name === field.dataset.name);
 
-      console.log(achievementFieldFromStorage);
       const fieldDates = Array.from(
         field.parentNode.querySelector('.achievement-field-dates').querySelectorAll('input')
       );

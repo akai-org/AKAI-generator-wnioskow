@@ -29,6 +29,4 @@ export const saveToStorage = () => {
   const [data, achievements] = getDataFromForm();
   localStorage.setItem('data', JSON.stringify(data));
   localStorage.setItem('achievements', JSON.stringify(achievements));
-
-  console.log(localStorage);
 };
