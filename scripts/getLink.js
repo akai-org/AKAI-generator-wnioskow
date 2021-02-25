@@ -11,11 +11,6 @@ window.addEventListener('load', () => {
     const link = generateLinkWithParamsString(queryString);
     copyTextToClipboard(link);
   });
-
-  document.querySelector('input[type="submit"]').addEventListener('click', (e) => {
-    document.querySelector('.loading-info').style.display = 'flex';
-    e.target.style.display = 'none';
-  });
 });
 
 function getQuerStringFromObject(object) {

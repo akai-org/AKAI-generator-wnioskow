@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
 
     <div class="form-container">
 
-        <form class="form" action="index.php" method="post">
+        <form class="form" action="index.php" method="post" target="_blank">
 
             <h3>Dane koła</h3>
             <label>Przewodniczący: <br /><input type="text" name="leader" id="leader" class="form-data" data-name="leader" value="<?= $leader ?>"/></label>
