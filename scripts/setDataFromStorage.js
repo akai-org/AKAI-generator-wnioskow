@@ -3,6 +3,9 @@ import { addAchievement } from './add-achievement.js';
 export const setDataFromStorage = () => {
   if (!localStorage) return;
 
+  // skip refilling the fields when the data in query params is given
+  if (!window.location.search) return;
+
   if (localStorage.data) {
     const data = JSON.parse(localStorage.data);
     const formFields = Array.from(document.querySelectorAll('input[class="form-data"]'));
